@@ -1,0 +1,94 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto; /*Center the main container horizontally */
+    padding: 10px;
+    background-color: #d6d6d6;
+    border-radius: 5px;
+    margin-top: 4px;
+  }
+  
+  .child-container {
+    width: 550px;
+    background-color: #e0e0e0;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Media Query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .main-container {
+      flex-direction: column; /* Change to a column layout on smaller screens */
+      align-items: center; /* Center child containers when in column layout */
+    }
+  }
+
+  .table-container {
+    max-height: 300px; /* Adjust this height as needed */
+    overflow-y: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+  }
+  
+  thead th {
+    padding: 6px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  tbody td {
+    padding: 6px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .toolbar_button{
+    background-color: rgb(96, 96, 255);
+    padding: 4px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar_button:hover{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    background-color: blue;
+    border-radius: 4px;
+}
+
+.spacer{
+    flex: 1;
+}
+
+.home_logo{
+  border-radius: 10px;
+}
+
+.home_logo,
+.toolbar{
+  padding: 3px;
+}

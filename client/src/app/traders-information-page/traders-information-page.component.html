@@ -1,0 +1,80 @@
+<app-toolbar></app-toolbar>
+<header class="main-container">
+  <div>
+    <h1>Traders Information</h1>
+    <h2>{{ error }}</h2>
+  </div>
+</header>
+<div class="main-container">
+  <div class="child-container">
+    <h2>Showing all traders names:</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Trader Id</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trader of traders">
+            <td>{{ trader.id }}</td>
+            <td>{{ trader.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="child-container">
+    <h2>10 previous transactions:</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Trader Name</th>
+            <th>Stock Name</th>
+            <th>Amount</th>
+            <th>Type Of Transaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let action of transactions">
+            <td>{{ traders[action.traderId].name }}</td>
+            <td>{{ shares[action.stockId].name }}</td>
+            <td>{{ action.amount }}</td>
+            <td *ngIf="action.purchase">Purchase</td>
+            <td *ngIf="!action.purchase">Sale</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="child-container">
+    <h2>Open transactions:</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Stock</th>
+            <th>Trader</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Type Of Transaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td>{{ request.id }}</td>
+            <td>{{ shares[request.stockId].name }}</td>
+            <td>{{ traders[request.traderId].name }}</td>
+            <td>{{ request.offer }}</td>
+            <td>{{ request.amount }}</td>
+            <td *ngIf="request.purchase">Purchase</td>
+            <td *ngIf="!request.purchase">Sale</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

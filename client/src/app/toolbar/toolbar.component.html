@@ -1,0 +1,29 @@
+<div class="toolbar" role="banner">
+  <img class="home_logo" width="40" src="./assets/home-logo.jpg" />
+  <span></span>
+  <a class="toolbar_button"
+    routerLink="/welcome-page"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Home</a
+  >
+  <div class="spacer"></div>
+  <a class="toolbar_button"
+    routerLink="/traders-page"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Traders</a
+  >
+  <a class="toolbar_button"
+    routerLink="/personal-page"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Personal</a
+  >
+  <a class="toolbar_button"
+    (click)="disconnect()"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Disconnect</a
+  >
+</div>
