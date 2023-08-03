@@ -1,0 +1,99 @@
+{
+  "shares": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "currentPrice": 230,
+      "amount": 15000
+    },
+    {
+      "id": "2",
+      "name": "Microsoft",
+      "currentPrice": 330,
+      "amount": 10000
+    },
+    {
+      "id": "3",
+      "name": "Tesla",
+      "currentPrice": 1500,
+      "amount": 1000
+    },
+    {
+      "id": "4",
+      "name": "Ford",
+      "currentPrice": 33,
+      "amount": 100000
+    },
+    {
+      "id": "5",
+      "name": "Gamestop",
+      "currentPrice": 2,
+      "amount": 230000
+    },
+    {
+      "id": "6",
+      "name": "Meta",
+      "currentPrice": 100,
+      "amount": 35000
+    },
+    {
+      "id": "7",
+      "name": "Uniliver",
+      "currentPrice": 75,
+      "amount": 17000
+    },
+    {
+      "id": "8",
+      "name": "BMW",
+      "currentPrice": 50,
+      "amount": 10000
+    },
+    {
+      "id": "10",
+      "name": "McDonalds",
+      "currentPrice": 132,
+      "amount": 45000
+    },
+    {
+      "id": "11",
+      "name": "Burger King",
+      "currentPrice": 99,
+      "amount": 30000
+    },
+    {
+      "id": "12",
+      "name": "Samsung",
+      "currentPrice": 67,
+      "amount": 12000
+    },
+    {
+      "id": "13",
+      "name": "Xiaomi",
+      "currentPrice": 18,
+      "amount": 100000
+    },
+    {
+      "id": "14",
+      "name": "HP",
+      "currentPrice": 830,
+      "amount": 1500
+    },
+    {
+      "id": "15",
+      "name": "Dyson",
+      "currentPrice": 980,
+      "amount": 160
+    },
+    {
+      "id": "16",
+      "name": "GoldenShare",
+      "currentPrice": 10000000,
+      "amount": 1
+    },
+    {
+      "id": "17",
+      "name": "CheapShare",
+      "currentPrice": 1,
+      "amount": 100000000
+    }
+}
