@@ -1,34 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Trader } from './trader';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  userId: number = 0;
-  userName: string = "";
-  stockId: number = 0;
-
   constructor(private http: HttpClient) { }
 
-  setUserData(id: number, name: string){
-    this.userId = id;
-    this.userName = name
-  }
-
-  getUserId(){
-    return this.userId;
-  }
-
-  getUserName(){
-    return this.userName;
-  }
-
-  setStockId(id: number){
-    this.stockId = id;
-  }
-  
-  getStockId(){
-    return this.stockId;
+  getTraderFromStorage(){
+    let data = localStorage.getItem('session');
+    if (data){
+      return {
+        Id: JSON.parse(data).trader.id,
+        Name: JSON.parse(data).trader.name,
+        Money: JSON.parse(data).trader.money,
+        Shares: JSON.parse(data).shares
+      } as Trader;
+    }
+    else
+      alert('Error has occurred');
+    return {} as Trader;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../cart.service';
@@ -9,22 +9,30 @@ import { CartService } from '../cart.service';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent {
-  response: any;
+  @ViewChild('broker_id') brokerId: any;
 
-  constructor(private router: Router, private http: HttpClient, private service: CartService){
-    if(this.service.getUserId() != 0)
+  constructor(private router: Router, private http: HttpClient, private service: CartService) {
+    let data = localStorage.getItem('session')
+    if (data)
       this.router.navigate(['/trading-page']);
+
   }
-  
-  routePage(value: any){
-    const url: string = `https://localhost:7072/api/Traders/GetTrader?traderId=${value}`;
+
+  routePage() {
+    let id = this.brokerId.nativeElement.value
+    const url: string = `https://localhost:7072/api/Traders/GetTrader?traderId=${id}`;
     this.http.get<any>(url).subscribe(data => {
-      if(data.statusCode == 404)
-        this.response = ", Error: invalid id";
-      else{
-          this.service.setUserData(data.value.trader.id, data.value.trader.name);
-          this.router.navigate(['/trading-page']);
-        }
+      if (data.statusCode == 404)
+        alert("Error: invalid id");
+      else {
+        // let jsonData = {
+        //   broker_id: id,
+        //   broker_name: data.value.trader.name
+        // }
+        //save data in local storage
+        localStorage.setItem('session', JSON.stringify(data.value));
+        this.router.navigate(['/trading-page']);
+      }
     })
   }
 }

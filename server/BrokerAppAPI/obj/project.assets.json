@@ -1497,32 +1497,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\roei9\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/roydaniel/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\roei9\\OneDrive\\Desktop\\Dev\\server-purchase update\\BrokerAppAPI\\BrokerAppAPI.csproj",
+      "projectUniqueName": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
       "projectName": "BrokerAppAPI",
-      "projectPath": "C:\\Users\\roei9\\OneDrive\\Desktop\\Dev\\server-purchase update\\BrokerAppAPI\\BrokerAppAPI.csproj",
-      "packagesPath": "C:\\Users\\roei9\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\roei9\\OneDrive\\Desktop\\Dev\\server-purchase update\\BrokerAppAPI\\obj\\",
+      "projectPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
+      "packagesPath": "/Users/roydaniel/.nuget/packages/",
+      "outputPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\roei9\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/roydaniel/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+        "/usr/local/share/dotnet/sdk/7.0.306/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1579,7 +1572,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
       }
     }
   }

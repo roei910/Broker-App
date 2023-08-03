@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { Trader } from '../trader';
 
 @Component({
   selector: 'app-share-page',
@@ -13,18 +14,25 @@ export class SharePageComponent {
   @ViewChild('purchase_type') purchaseType: any;
   @ViewChild('share_offer') shareOffer: any;
   @ViewChild('share_amount') shareAmount: any;
-  // stock: Stock;
+  trader?: Trader;
   stockResponse: any;
   transactions: any;
   openRequests: any;
-  stockId: number;
+  stockId: any;
   stockresponse: any;
 
   constructor(private service: CartService, 
     private http: HttpClient,
     private router: Router,
     private cRef: ChangeDetectorRef) {
-    this.stockId = service.getStockId();
+    let traderData = this.service.getTraderFromStorage();
+    if(traderData)
+      this.trader = traderData;
+    let stockData = localStorage.getItem('stock_session');
+    if(stockData)
+      this.stockId = JSON.parse(stockData).stockId;
+    else
+      alert('Error has occurred');
     this.initializePage();
   }
 
@@ -76,16 +84,17 @@ export class SharePageComponent {
     var body = {
       "id" : 0,
       "stockId" : this.stockId as number,
-      "traderId" : this.service.getUserId() as number,
+      "traderId" : this.trader?.Id as number,
       "offer" : this.shareOffer.nativeElement.value as number,
       "amount" : this.shareAmount.nativeElement.value as number,
       "purchase" : (this.purchaseType.nativeElement.value == 'purchase')? true : false
     }; 
     this.http.post<any>(url, body).subscribe((data: any) => {
       if (data.statusCode == 404) 
-        console.log('Problem with submitting data');
+        alert('Problem with submitting data');
       else 
-        console.log("purchase sent");
+        alert("purchase sent");
     });
+    window.location.reload();
   }
 }

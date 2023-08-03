@@ -1,19 +1,19 @@
 <div class="toolbar" role="banner">
-  <img width="40" class="home_logo" src="./assets/home-logo.jpg" />
+  
   <span></span>
   <a
     class="toolbar_button"
     routerLink="/welcome-page"
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
-    >Home</a
+    >
+    <img width="40" class="home_logo" src="./assets/home-logo.jpg" />
+    </a
   >
 </div>
-<!-- <br style="height: 2px;"/> -->
 <header class="main-container">
-  <h2>Please connect to your account {{ response }}</h2>
+  <h2>Please connect to your account</h2>
 </header>
-<!-- <br/> -->
 <div class="main-container">
   <div class="child-container">
     <form class="user_login_child" action="">
@@ -27,12 +27,11 @@
         #broker_id
       /><br />
     </form>
-    <button class="form_child" (click)="routePage(broker_id.value)">
+    <button class="form_child" (click)="routePage()">
       Connect
     </button>
   </div>
 </div>
-<!-- <br/> -->
 <footer class="main-container">
   Created by roei daniel
 </footer>

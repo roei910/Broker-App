@@ -12,7 +12,9 @@ export class ToolbarComponent {
   }
 
   disconnect(){
-    this.service.setUserData(0, "");
+    localStorage.removeItem('session');
+    
+    // this.service.setUserData(0, "");
     this.router.navigate(['/welcome-page']);
   }
 }

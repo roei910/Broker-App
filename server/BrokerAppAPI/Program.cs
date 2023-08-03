@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApiContext>
         });
 
 //add background service
-//builder.Services.AddHostedService<StocksBackgroundTask>();
+builder.Services.AddHostedService<StocksBackgroundTask>();
 
 var app = builder.Build();
 app.UseCors(option => option.WithOrigins("http://localhost:51692").AllowAnyHeader().AllowAnyOrigin());
