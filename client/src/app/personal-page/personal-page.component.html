@@ -8,7 +8,7 @@
 <div>
   <div class="main-container">
     <div class="child-container">
-      <h3>Current stocks</h3>
+      <h2>Current stocks</h2>
       <div class="table-container">
         <table>
           <thead>
@@ -86,6 +86,12 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="child-container">
+      <h2>Shares Chart:</h2>
+      <div>
+        <canvasjs-chart [options]="chart" class="chart" [styles]="{width: '650px', height:'360px'}"></canvasjs-chart> 
+      </div>
     </div>
   </div>
 </div>

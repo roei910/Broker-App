@@ -13,6 +13,8 @@ export class PersonalPageComponent {
   lastDeals?: any;
   shares?: any;
   openRequests: any;
+  chart?: any;
+  
 
   constructor(private service: CartService, private http: HttpClient) {
     this.trader = this.service.getTraderFromStorage();
@@ -71,5 +73,28 @@ export class PersonalPageComponent {
         alert('Successfully deleted request');
     });
     window.location.reload();
+  }
+
+  createChart(){
+    var chartOptions = {
+      animationEnabled: true,
+      title: {
+      text: "Shares by Stock Name"
+      },
+      data: [{
+      type: "pie",
+      startAngle: -90,
+      indexLabel: "{name}: {y}",
+      yValueFormatString: "#,###.##'%'",
+      dataPoints: [
+        { y: 14.1, name: "Toys" },
+        { y: 28.2, name: "Electronics" },
+        { y: 14.4, name: "Groceries" },
+        { y: 43.3, name: "Furniture" }
+      ]
+      }]
+    };
+
+    this.chart = chartOptions;
   }
 }

@@ -11,6 +11,8 @@ import { TradersInformationPageComponent } from './traders-information-page/trad
 import { TradingPageComponent } from './trading-page/trading-page.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
