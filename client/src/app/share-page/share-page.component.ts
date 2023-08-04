@@ -15,75 +15,82 @@ export class SharePageComponent {
   @ViewChild('share_offer') shareOffer: any;
   @ViewChild('share_amount') shareAmount: any;
   trader?: Trader;
-  stockResponse: any;
+  stock: any;
   transactions: any;
   openRequests: any;
   stockId: any;
-  stockresponse: any;
 
+  //constructor for share-page
   constructor(private service: CartService, 
     private http: HttpClient,
     private router: Router,
     private cRef: ChangeDetectorRef) {
+    //get trader from local storage
     let traderData = this.service.getTraderFromStorage();
     if(traderData)
       this.trader = traderData;
+    //get stock information from local storage
     let stockData = localStorage.getItem('stock_session');
-    if(stockData)
+    if(stockData){
       this.stockId = JSON.parse(stockData).stockId;
+      this.initializePage();
+    }
     else
       alert('Error has occurred');
-    this.initializePage();
   }
 
+  //initialize all variables
   initializePage(){
-    this.getStockRespose();
+    this.getStock();
     this.getStockTransactions();
     this.getOpenRequests();
   }
 
-  getStockRespose() {
+  //get stock information from server
+  getStock() {
     var url = `https://localhost:7072/api/Shares/GetShare?ShareId=${
       this.stockId
     }`;
     this.http.get<any>(url).subscribe((data) => {
       if (data.statusCode == 404) 
-        this.stockResponse = 'Problem fetching share from server';
+        alert('Problem fetching share from server');
       else 
-        this.stockResponse = data.value;
+        this.stock = data.value;
     });
   }
 
+  //get all transaction for the current stock from server
   getStockTransactions() {
     var url = `https://localhost:7072/api/Shares/Share10Transactions?stockId=${
-      // this.service.getStock().Id
       this.stockId
     }`;
     this.http.get<any>(url).subscribe((data) => {
       if (data.statusCode == 404) 
-        this.transactions = 'Problem fetching share from server';
+        alert('Problem fetching share from server');
       else 
         this.transactions = data.value;
     });
   }
 
+  //get all open requests for the current stock from server
   getOpenRequests() {
     var url = `https://localhost:7072/api/Shares/GetShareOpenRequests?stockId=${
       this.stockId
     }`;
     this.http.get<any>(url).subscribe((data) => {
       if (data.statusCode == 404) 
-        this.openRequests = 'Problem fetching share from server';
+        alert('Problem fetching share from server');
       else 
         this.openRequests = data.value;
     });
   }
 
+  //submit a new share request
   onSubmit(){
     var url = `https://localhost:7072/api/Shares/ShareRequest`;
     var body = {
       "id" : 0,
-      "stockId" : this.stockId as number,
+      "stockId" : this.stock.id as number,
       "traderId" : this.trader?.Id as number,
       "offer" : this.shareOffer.nativeElement.value as number,
       "amount" : this.shareAmount.nativeElement.value as number,
@@ -92,9 +99,12 @@ export class SharePageComponent {
     this.http.post<any>(url, body).subscribe((data: any) => {
       if (data.statusCode == 404) 
         alert('Problem with submitting data');
-      else 
+      else if(data.value.message != undefined)
+        alert(data.value.message);
+      else{
         alert("purchase sent");
+        window.location.reload();
+      }
     });
-    window.location.reload();
   }
 }

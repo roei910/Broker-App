@@ -11,10 +11,9 @@ export class ToolbarComponent {
   constructor(private router: Router, private service: CartService){
   }
 
+  //function to remove data from local storage and go to welcome-page
   disconnect(){
     localStorage.removeItem('session');
-    
-    // this.service.setUserData(0, "");
     this.router.navigate(['/welcome-page']);
   }
 }

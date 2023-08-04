@@ -2,7 +2,6 @@
 using BrokerAppAPI.Models;
 using BrokerAppAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Timers;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -11,13 +10,14 @@ import { CartService } from '../cart.service';
 export class WelcomePageComponent {
   @ViewChild('broker_id') brokerId: any;
 
-  constructor(private router: Router, private http: HttpClient, private service: CartService) {
+  constructor(private router: Router, private http: HttpClient) {
+    //checks local storage data already exists, theb routes to trading page
     let data = localStorage.getItem('session')
     if (data)
       this.router.navigate(['/trading-page']);
-
   }
 
+  //function to route to trading page, checking user credentials with server
   routePage() {
     let id = this.brokerId.nativeElement.value
     const url: string = `https://localhost:7072/api/Traders/GetTrader?traderId=${id}`;
@@ -25,11 +25,6 @@ export class WelcomePageComponent {
       if (data.statusCode == 404)
         alert("Error: invalid id");
       else {
-        // let jsonData = {
-        //   broker_id: id,
-        //   broker_name: data.value.trader.name
-        // }
-        //save data in local storage
         localStorage.setItem('session', JSON.stringify(data.value));
         this.router.navigate(['/trading-page']);
       }

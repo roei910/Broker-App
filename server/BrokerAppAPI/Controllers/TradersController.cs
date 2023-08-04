@@ -38,7 +38,6 @@ namespace BrokerAppAPI.Controllers
             if (result == null)
                 return new JsonResult(NotFound());
 
-            //return new JsonResult(Ok(result));
             return new JsonResult(Ok(res));
         }
         
@@ -68,7 +67,6 @@ namespace BrokerAppAPI.Controllers
                 }
                 return new JsonResult(Ok(lst));
             }
-            //return new JsonResult(Ok(result));
             return new JsonResult(Ok(traderTransactions));
         }
 
@@ -81,10 +79,7 @@ namespace BrokerAppAPI.Controllers
             ).ToList();
 
             if (result.Count() > 8)
-            {
                 return new JsonResult(Ok(result.GetRange(result.Count() - 8, 8)));
-            }
-
             return new JsonResult(Ok(result));
         }
 

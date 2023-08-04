@@ -13,25 +13,33 @@ export class TradingPageComponent {
   sharesJson?: any;
   error?: string;
 
+  //constructor for trading-page
   constructor(private service: CartService, private router: Router, private http: HttpClient) {
+    //get user data from local storage if exists
     let data = localStorage.getItem('session');
     if (data) {
       this.name = JSON.parse(data).trader.name;
-      const url: string = `https://localhost:7072/api/Shares/GetAllShares`;
+      this.getAllShares()
+    }
+    else
+      alert('Error fetching data from local storage, please reconnect');
+  }
+
+  //route to share-page and save the stock chosen
+  sharePage(stockId: number) {
+    let data = {stockId: stockId}
+    localStorage.setItem('stock_session', JSON.stringify(data));
+    this.router.navigate(['/share-page']);
+  }
+
+  //get all shares data from server
+  getAllShares(){
+    const url: string = `https://localhost:7072/api/Shares/GetAllShares`;
       this.http.get<any>(url).subscribe(data => {
         if (data.statusCode == 404)
           alert("Problem connecting to server");
         else
           this.sharesJson = data.value;
       })
-    }
-    else
-      alert('Error has occurred');
-  }
-
-  sharePage(stockId: number) {
-    let data = {stockId: stockId}
-    localStorage.setItem('stock_session', JSON.stringify(data));
-    this.router.navigate(['/share-page']);
   }
 }

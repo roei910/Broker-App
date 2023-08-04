@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Trader } from './trader';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
+  //cart service function to retrieve the trader information from local storage
   getTraderFromStorage(){
     let data = localStorage.getItem('session');
     if (data){

@@ -47,12 +47,8 @@ namespace BrokerAppAPI.Controllers
         public JsonResult Get10Transactions()
         {
             var result = _context.TransactionHistory.ToList();
-
             if(result.Count() > 10)
-            {
                 return new JsonResult(Ok(result.GetRange(result.Count() - 10, 10)));
-            }
-
             return new JsonResult(Ok(result));
         }
 
@@ -62,12 +58,8 @@ namespace BrokerAppAPI.Controllers
             var result = _context.TransactionHistory.Where(
                 transaction => 
                 transaction.StockId == stockId).ToList();
-
             if (result.Count() > 10)
-            {
                 return new JsonResult(Ok(result.GetRange(result.Count() - 10, 10)));
-            }
-
             return new JsonResult(Ok(result));
         }
 
@@ -77,7 +69,6 @@ namespace BrokerAppAPI.Controllers
             var result = _context.OpenRequests.Where(
                 transaction =>
                 transaction.StockId == stockId).ToList();
-
             return new JsonResult(Ok(result));
         }
 
@@ -85,7 +76,6 @@ namespace BrokerAppAPI.Controllers
         public JsonResult GetAllOpenRequests()
         {
             var result = _context.OpenRequests.ToList();
-
             return new JsonResult(Ok(result));
         }
 
@@ -94,7 +84,7 @@ namespace BrokerAppAPI.Controllers
         {
             var stock = _context.Stocks.Find(shareRequest.StockId);
             var trader = _context.Traders.Find(shareRequest.TraderId);
-            
+
             //couldnt find trader or stock
             if (stock == null || trader == null)
                 return new JsonResult(NotFound());
@@ -117,17 +107,30 @@ namespace BrokerAppAPI.Controllers
             //search for open request with different type of purchase
             if (_context.OpenRequests.Where(
                 request => request.StockId == stock.Id &&
-                request.Purchase != shareRequest.Purchase).ToList().Count() > 0)
-                return new JsonResult(Ok("cannot create purchase, " +
-                    "another open deal contradicting the purchase"));
+                request.Purchase != shareRequest.Purchase &&
+                request.TraderId == shareRequest.TraderId).ToList().Count() > 0)
+            {
+                var res = new
+                {
+                    message = "cannot create purchase, " +
+                    "another open deal contradicting the purchase"
+                };
+                return new JsonResult(Ok(res));
+            }
 
             //purchase request
             if (shareRequest.Purchase)
             {
                 //check if trader has enough money
                 if (trader.Money < stock.CurrentPrice * shareRequest.Amount)
-                    return new JsonResult(Ok("cannot create purchase, " +
-                        "not enough available funds"));
+                {
+                    var res = new
+                    {
+                        message = "cannot create purchase, " +
+                        "not enough available funds"
+                    };
+                    return new JsonResult(Ok(res));
+                }
 
                 //check price to purchase or add new request
                 if (stock.CurrentPrice > shareRequest.Offer)
@@ -178,6 +181,13 @@ namespace BrokerAppAPI.Controllers
                         stock.Amount = 0;
                         trader.Money -= sharePurchase.Amount * sharePurchase.Price;
                     }
+                    //update purchase counter in stock
+                    stock.CountPurchase += 1;
+                    if(stock.CountPurchase >= 10)
+                    {
+                        stock.CurrentPrice = Convert.ToInt32(Math.Ceiling(stock.CurrentPrice * 1.01));
+                        stock.CountPurchase -= 10;
+                    }
                 }
             }
             //sell request
@@ -185,10 +195,19 @@ namespace BrokerAppAPI.Controllers
             {
                 //check if available shares to sell
                 var availableShares = _context.TradersShares.Where(
-                    share => share.TraderId == stock.Id && share.StockId == stock.Id).ToList();
+                    share =>
+                    share.TraderId == trader.Id &&
+                    share.StockId == stock.Id).ToList();
                 if (availableShares.Count() > 0 &&
                     availableShares.ElementAt(0).Amount < shareRequest.Amount)
-                    return new JsonResult(Ok("not enough shares to sell"));
+                {
+                    var res = new
+                    {
+                        message = "not enough shares to sell"
+                    };
+                    return new JsonResult(Ok(res));
+                }
+                    
 
                 //check price to sell or add new request
                 if (stock.CurrentPrice < shareRequest.Offer)
@@ -211,7 +230,13 @@ namespace BrokerAppAPI.Controllers
                             traderStock.ElementAt(0).Amount -= shareRequest.Amount;
                     }
                     else
-                        return new JsonResult(Ok("couldnt find shares in assets"));
+                    {
+                        var res = new
+                        {
+                            message = "couldnt find shares in assets"
+                        };
+                        return new JsonResult(Ok(res));
+                    }
 
                     //add transaction
                     _context.TransactionHistory.Add(sharePurchase);
@@ -219,6 +244,13 @@ namespace BrokerAppAPI.Controllers
                     //change stock amount and trader funds
                     stock.Amount += shareRequest.Amount;
                     trader.Money += sharePurchase.Amount * sharePurchase.Price;
+                }
+                //update sell counter in stock
+                stock.CountSale += 1;
+                if (stock.CountSale >= 4)
+                {
+                    stock.CurrentPrice = Convert.ToInt32(Math.Ceiling(stock.CurrentPrice * 0.99));
+                    stock.CountSale -= 4;
                 }
             }
             
