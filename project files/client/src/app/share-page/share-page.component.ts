@@ -119,7 +119,6 @@ export class SharePageComponent {
 
   onInteraction(openRequestId: number) {
     var url = `https://localhost:7072/api/Shares/TransferFunds?shareRequestId=${openRequestId}&traderId=${this.trader?.Id}`;
-    alert(url);
     this.http.post<any>(url, {}).subscribe((data: any) => {
       if (data.statusCode == 404) 
         alert('Problem with submitting data');

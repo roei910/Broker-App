@@ -205,21 +205,45 @@ namespace BrokerAppAPI.Controllers
                     share =>
                     share.TraderId == trader.Id &&
                     share.StockId == stock.Id).ToList();
-                if (availableShares.Count() > 0 &&
+                if (availableShares.Count() == 0 ||
                     availableShares.ElementAt(0).Amount < shareRequest.Amount)
                 {
                     var res = new
                     {
-                        message = "not enough shares to sell"
+                        message = "Not Enough Shares To Sell"
                     };
                     return new JsonResult(Ok(res));
                 }
-                    
 
                 //check price to sell or add new request
                 if (stock.CurrentPrice < shareRequest.Offer)
                 {
+                    //find trader stock by id if exists
+                    var traderStock = _context.TradersShares.Where(
+                        share =>
+                        share.TraderId == shareRequest.TraderId &&
+                        share.StockId == shareRequest.StockId).ToList();
+
+                    if (traderStock.Count > 0)
+                    {
+                        if (traderStock.ElementAt(0).Amount == shareRequest.Amount)
+                            _context.TradersShares.Remove(traderStock.ElementAt(0));
+                        else
+                        {
+                            traderStock.ElementAt(0).Amount -= shareRequest.Amount;
+                            traderStock.ElementAt(0).TotalPrice -= shareRequest.Amount * shareRequest.Offer;
+                        }
+                    }
+                    else
+                    {
+                        var res = new
+                        {
+                            message = "couldnt find shares in assets"
+                        };
+                        return new JsonResult(Ok(res));
+                    }
                     _context.OpenRequests.Add(shareRequest);
+                    
                 }
                 else
                 {
@@ -272,15 +296,31 @@ namespace BrokerAppAPI.Controllers
         public JsonResult CancelRequest(int requestId)
         {
             var result = _context.OpenRequests.Find(requestId);
-
             if (result == null)
                 return new JsonResult(NotFound());
 
-            //return money to trader
             var trader = _context.Traders.Find(result.TraderId);
-            if(trader  == null)
+            if (trader == null)
                 return new JsonResult(NotFound());
-            trader.Money += result.Offer * result.Amount;
+
+            if (result.Purchase)
+            {
+                //return money to trader
+                trader.Money += result.Offer * result.Amount;
+            }
+            else
+            {
+                //return shares to trader
+                //problem with remembering the original price for the total price.
+                //need to save the data to return to the trader
+                _context.TradersShares.Add(new Share
+                {
+                    StockId = result.StockId,
+                    Amount = result.Amount,
+                    TotalPrice = result.Amount * result.Offer,
+                    TraderId = result.TraderId
+                });
+            }
 
             //remove open request
             _context.OpenRequests.Remove(result);
@@ -311,12 +351,12 @@ namespace BrokerAppAPI.Controllers
                     share =>
                     share.TraderId == trader2.Id &&
                     share.StockId == request.StockId).ToList();
-                if (availableShares.Count() > 0 &&
+                if (availableShares.Count() == 0 ||
                     availableShares.ElementAt(0).Amount < request.Amount)
                 {
                     var res = new
                     {
-                        message = "not enough shares to sell"
+                        message = "Not Enough Shares To Sell"
                     };
                     return new JsonResult(Ok(res));
                 }
@@ -386,11 +426,26 @@ namespace BrokerAppAPI.Controllers
                 {
                     var res = new
                     {
-                        message = "cannot create purchase, " +
-                        "not enough available funds"
+                        message = "Cannot Create Purchase, " +
+                        "Not Enough Available Funds"
                     };
                     return new JsonResult(Ok(res));
                 }
+
+                //remove shares
+                var traderStock = _context.TradersShares.Where(
+                    share =>
+                    share.TraderId == trader2.Id &&
+                    share.StockId == request.StockId).ToList();
+
+                if (traderStock.ElementAt(0).Amount == request.Amount)
+                    _context.TradersShares.Remove(traderStock.ElementAt(0));
+                else
+                {
+                    traderStock.ElementAt(0).Amount -= request.Amount;
+                    traderStock.ElementAt(0).TotalPrice -= request.Amount * request.Offer;
+                }
+
 
                 //update trader1
                 //update money after sale
@@ -404,19 +459,7 @@ namespace BrokerAppAPI.Controllers
                     Purchase = request.Purchase,
                     TraderId = request.TraderId
                 });
-                //remove shares
-                var traderStock = _context.TradersShares.Where(
-                    share =>
-                    share.TraderId == trader.Id &&
-                    share.StockId == request.StockId).ToList();
-
-                if (traderStock.ElementAt(0).Amount == request.Amount)
-                    _context.TradersShares.Remove(traderStock.ElementAt(0));
-                else
-                {
-                    traderStock.ElementAt(0).Amount -= request.Amount;
-                    traderStock.ElementAt(0).TotalPrice -= request.Amount * request.Offer;
-                }
+                
 
                 //update trader2
                 //add money after purchase
@@ -430,10 +473,11 @@ namespace BrokerAppAPI.Controllers
                     Purchase = !request.Purchase,
                     TraderId = trader2.Id
                 });
+
                 //add shares to trader shares, check for existing share
                 var trader2Stock = _context.TradersShares.Where(
                     trdrStck =>
-                    trdrStck.TraderId == trader2.Id &&
+                    trdrStck.TraderId == trader.Id &&
                     trdrStck.StockId == stock.Id).ToList();
                 if (trader2Stock.Count > 0)
                 {
@@ -441,6 +485,7 @@ namespace BrokerAppAPI.Controllers
                     trader2Stock.ElementAt(0).TotalPrice += request.Amount * request.Offer;
                 }
                 else
+                {
                     _context.TradersShares.Add(new Share
                     {
                         StockId = request.StockId,
@@ -448,6 +493,11 @@ namespace BrokerAppAPI.Controllers
                         TotalPrice = request.Amount * request.Offer,
                         TraderId = trader2.Id
                     });
+                }
+                
+
+
+
             }
 
             //remove open request
