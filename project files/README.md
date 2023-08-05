@@ -1,9 +1,13 @@
 # BrokerApp
  
-Front-end: angular
-Back-end: .net core
 
-backend:
+
+## Back-end: .net core
+run server: open .sln file using visual studio, press play.
+should run on "https://localhost:7072/".
+including swagger to view http requests for api.
+
+information:
 allows traders to purchase or sell stocks to the market at the current price.
 allow traders to trade between each other for prices different than current stock price.
 
@@ -27,8 +31,11 @@ traders http request:
 4. Get8Transactions, gets the last 8 transaction made by the trader.
 5. GetTraderOpenRequests, gets all the traders open requests by trader id.
 
+## Front-end: angular
+run client: cd to the folder, open cmd, run "npm install"
+then run "npm serve" to run the server, should run on "http://localhost:4200/"
 
-frontend:
+information:
 connection page:
 allow connection by http request to the server.
 
