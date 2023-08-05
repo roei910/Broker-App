@@ -87,40 +87,6 @@ export class PersonalPageComponent {
     window.location.reload();
   }
 
-  createChart() {
-    var sharesStr = localStorage.getItem('shares');
-    var stocksStr = localStorage.getItem('stocks');
-    var data = [];
-    var chartData = [];
-    var sum = 0;
-    if (sharesStr != null && stocksStr != null) {
-      var shares = JSON.parse(sharesStr);
-      var stocks = JSON.parse(stocksStr);
-      for (var i = 0; i < shares.length; i++) {
-        data.push({ shares: shares[i].amount, id: shares[i].stockId });
-        sum += shares[i].amount;
-      }
-      for (var i = 0; i < data.length; i++) {
-        chartData.push(({ y: (100.0 * data[i].shares) / sum, name: stocks[data[i].id - 1].name }));
-      }
-      var chartOptions = {
-        animationEnabled: true,
-        title: {
-          text: "Shares by Stock Name"
-        },
-        data: [{
-          type: "pie",
-          startAngle: -90,
-          indexLabel: "{name}: {y}",
-          yValueFormatString: "#,###.##'%'",
-          dataPoints: chartData
-        }]
-      };
-      this.chart = chartOptions;
-    }
-
-  }
-
   createChartOnInit() {
     var data = [];
     var chartData = [];
