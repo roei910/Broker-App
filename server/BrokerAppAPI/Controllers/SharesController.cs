@@ -288,6 +288,9 @@ namespace BrokerAppAPI.Controllers
             return new JsonResult(Ok(result));
         }
 
+
+        //traderId - the trader to allow the share request to happend,
+        //if the share request trader wants to buy then the trader id is the seller.
         [HttpPost]
         public JsonResult TransferFunds(int shareRequestId, int traderId)
         {
@@ -452,7 +455,6 @@ namespace BrokerAppAPI.Controllers
 
             _context.SaveChanges();
             return new JsonResult(Ok(request));
-
         }
     }
 }
