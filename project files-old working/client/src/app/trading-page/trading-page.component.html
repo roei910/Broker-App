@@ -1,0 +1,42 @@
+<app-toolbar></app-toolbar>
+<header class="main-container">
+  <div>
+    <h1>Welcome {{ name }}</h1>
+  </div>
+</header>
+<div class="main-container">
+  <div class="child-container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Company</th>
+            <th>Current Price</th>
+            <th>Amount</th>
+            <th>Information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let share of sharesJson">
+            <td>{{ share.id }}</td>
+            <td>{{ share.name }}</td>
+            <td>{{ share.currentPrice }}</td>
+            <td>{{ share.amount }}</td>
+            <td>
+              <button
+                class="editbtn"
+                routerLink="/share-page"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                (click)="sharePage(share.id)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

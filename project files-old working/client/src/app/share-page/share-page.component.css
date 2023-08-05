@@ -1,0 +1,19 @@
+.form_child{
+    margin-bottom: 4px;
+}
+
+.form_label{
+    margin-right: 3px;
+}
+
+.no_border{
+    border: none;
+}
+
+.left_align{
+    text-align: left;
+}
+
+.right_align{
+    text-align: right;
+}

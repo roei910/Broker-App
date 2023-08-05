@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{E6E053F6-5464-4758-AB42-179DDCCD468A}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrokerAppAPI/Data/ApiContext.cs">
+    <Files>
+      <File FileName="BrokerAppAPI/Models/StocksBackgroundTask.cs" Line="31" Column="10" />
+      <File FileName="BrokerAppAPI/Data/ApiContext.cs" Line="28" Column="24" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BrokerAppAPI" expanded="True">
+            <Node name="BrokerAppAPI">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="ApiContext.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BrokerAppAPI PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+</Properties>

@@ -1,0 +1,97 @@
+<app-toolbar></app-toolbar>
+<header class="main-container">
+  <div>
+    <h1>Hello {{ trader.Name }}, Available Holdings:</h1>
+    <h3>Available Funds: {{ trader.Money }}</h3>
+  </div>
+</header>
+<div>
+  <div class="main-container">
+    <div class="child-container">
+      <h2>Current stocks</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Share Id</th>
+              <th>Company</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let share of this.trader.Shares">
+              <td>{{ share.id }}</td>
+              <td>{{ this.shares[share.stockId-1].name }}</td>
+              <td>{{ share.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="child-container">
+      <h2>Showing last 8 transactions</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Company</th>
+              <th>Price</th>
+              <th>Amount</th>
+              <th>Type of Transaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deal of lastDeals">
+              <td>{{ deal.id }}</td>
+              <td>{{ shares[deal.stockId-1].name }}</td>
+              <td>{{ deal.price }}</td>
+              <td>{{ deal.amount }}</td>
+              <td *ngIf="deal.purchase">Purchase</td>
+              <td *ngIf="!deal.purchase">Sale</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="child-container">
+      <h2>Open transactions:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Stock Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of this.openRequests">
+            <td>{{ request.id }}</td>
+            <td>{{ request.stockId }}</td>
+            <td>{{ request.offer }}</td>
+            <td>{{ request.amount }}</td>
+            <td *ngIf="request.purchase">Purchase</td>
+            <td *ngIf="!request.purchase">Sale</td>
+            <td>
+              <button
+                class="delete_request_button"
+                (click)="deleteRequest(request.id)"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- only show if user has any shares -->
+    <div *ngIf="this.chart!=null" class="child-container">
+      <div class="canvas_container">
+        <canvasjs-chart [options]="chart"></canvasjs-chart> 
+      </div>
+    </div>
+  </div>
+</div>
