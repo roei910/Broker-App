@@ -31,6 +31,11 @@ traders http request:
 4. Get8Transactions, gets the last 8 transaction made by the trader.
 5. GetTraderOpenRequests, gets all the traders open requests by trader id.
 
+stocks background service:
+not working. tried to make but could do updates well.
+
+
+
 ## Front-end: angular
 run client: cd to the folder, open cmd, run "npm install"
 then run "npm serve" to run the server, should run on "http://localhost:4200/"
