@@ -43,7 +43,7 @@ export class PersonalPageComponent {
           Money: data.value.trader.money,
           Shares: data.value.shares,
         };
-        localStorage.setItem('shares', JSON.stringify(data.value.shares));
+        // localStorage.setItem('shares', JSON.stringify(data.value.shares));
       }
     });
 
@@ -62,7 +62,7 @@ export class PersonalPageComponent {
         alert('Problem connecting to server');
       else {
         this.shares = data.value;
-        localStorage.setItem('stocks', JSON.stringify(data.value));
+        // localStorage.setItem('stocks', JSON.stringify(data.value));
       }
     });
   }
