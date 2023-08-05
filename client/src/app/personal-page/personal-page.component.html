@@ -16,6 +16,7 @@
               <th>Share Id</th>
               <th>Company</th>
               <th>Amount</th>
+              <th>Average Price</th>
             </tr>
           </thead>
           <tbody>
@@ -23,6 +24,7 @@
               <td>{{ share.id }}</td>
               <td>{{ this.shares[share.stockId-1].name }}</td>
               <td>{{ share.amount }}</td>
+              <td>{{ share.totalPrice / share.amount}}</td>
             </tr>
           </tbody>
         </table>

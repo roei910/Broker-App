@@ -46,16 +46,40 @@
           <th>Price</th>
           <th>Amount</th>
           <th>Type</th>
+          <th>Interact</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let request of this.openRequests">
           <td>{{ request.id }}</td>
-          <td>{{ request.traderId }}</td>
+          <td>{{ this.traders[request.traderId-1].name }}</td>
           <td>{{ request.offer }}</td>
           <td>{{ request.amount }}</td>
           <td *ngIf="request.purchase">Purchase</td>
           <td *ngIf="!request.purchase">Sale</td>
+          <td *ngIf="this.trader?.Id != request.traderId && !request.purchase">
+            <button
+                class="editbtn"
+                routerLink="/share-page"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                (click)="onInteraction(request.id)"
+              >
+              Buy
+            </button>
+          </td>
+          <td *ngIf="this.trader?.Id != request.traderId && request.purchase">
+            <button
+                class="editbtn"
+                routerLink="/share-page"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                (click)="onInteraction(request.id)"
+              >
+              Sell
+            </button>
+          </td>
+          <td *ngIf="this.trader?.Id == request.traderId"></td>
         </tr>
       </tbody>
     </table>

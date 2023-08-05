@@ -10,5 +10,6 @@ namespace BrokerAppAPI.Models
         public int TraderId { get; set; }
         public int StockId { get; set; }
         public int Amount { get; set; }
+        public int TotalPrice { get; set; }
     }
 }
