@@ -102,7 +102,7 @@ export class SharePageComponent {
       else if(data.value.message != undefined)
         alert(data.value.message);
       else{
-        alert("purchase sent");
+        alert("request sent");
         window.location.reload();
       }
     });

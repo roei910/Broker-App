@@ -1,8 +1,8 @@
 <app-toolbar></app-toolbar>
 <header class="main-container">
   <div>
-    <h1>Hello {{ trader?.Name }}, Available Holdings:</h1>
-    <h3>Available Funds: {{ trader?.Money }}</h3>
+    <h1>Hello {{ trader.Name }}, Available Holdings:</h1>
+    <h3>Available Funds: {{ trader.Money }}</h3>
   </div>
 </header>
 <div>
@@ -19,9 +19,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let share of this.trader?.Shares">
+            <tr *ngFor="let share of this.trader.Shares">
               <td>{{ share.id }}</td>
-              <td>{{ this.shares[share.stockId].name }}</td>
+              <td>{{ this.shares[share.stockId-1].name }}</td>
               <td>{{ share.amount }}</td>
             </tr>
           </tbody>
@@ -44,7 +44,7 @@
           <tbody>
             <tr *ngFor="let deal of lastDeals">
               <td>{{ deal.id }}</td>
-              <td>{{ shares[deal.stockId].name }}</td>
+              <td>{{ shares[deal.stockId-1].name }}</td>
               <td>{{ deal.price }}</td>
               <td>{{ deal.amount }}</td>
               <td *ngIf="deal.purchase">Purchase</td>
@@ -88,9 +88,8 @@
       </table>
     </div>
     <div class="child-container">
-      <h2>Shares Chart:</h2>
-      <div>
-        <canvasjs-chart [options]="chart" class="chart" [styles]="{width: '650px', height:'360px'}"></canvasjs-chart> 
+      <div class="canvas_container">
+        <canvasjs-chart [options]="chart"></canvasjs-chart> 
       </div>
     </div>
   </div>

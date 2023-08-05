@@ -9,38 +9,47 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./personal-page.component.css'],
 })
 export class PersonalPageComponent {
-  trader?: Trader;
+  trader: Trader;
   lastDeals?: any;
   shares?: any;
   openRequests: any;
   chart?: any;
-  
+
 
   constructor(private service: CartService, private http: HttpClient) {
     this.trader = this.service.getTraderFromStorage();
-    if(this.trader != {} as Trader){
+    if (this.trader != {} as Trader) {
       this.updateTrader();
       this.getAllShares();
       this.getTraderOpenRequests();
     }
   }
 
+  ngOnInit() {
+
+  }
+
+  ngAfterViewChecked(){
+    this.createChartOnInit();
+  }
+
   updateTrader() {
-    let url: string = `https://localhost:7072/api/Traders/GetTrader?traderId=${this.trader?.Id}`;
+    let url: string = `https://localhost:7072/api/Traders/GetTrader?traderId=${this.trader.Id}`;
     this.http.get<any>(url).subscribe((data) => {
       if (data.statusCode != 404) {
         this.trader = {
           Id: data.value.trader.id,
           Name: data.value.trader.name,
           Money: data.value.trader.money,
-          Shares: data.value.shares == null ? null : data.value.shares,
+          Shares: data.value.shares,
         };
+        localStorage.setItem('shares', JSON.stringify(data.value.shares));
       }
     });
 
     url = `https://localhost:7072/api/Traders/Get8Transactions?traderId=${this.trader?.Id}`;
     this.http.get<any>(url).subscribe((data) => {
-      if (data.statusCode == 404) 
+      if (data.statusCode == 404)
         alert('Problem connecting to server');
       else this.lastDeals = data.value;
     });
@@ -49,9 +58,12 @@ export class PersonalPageComponent {
   getAllShares() {
     const url: string = `https://localhost:7072/api/Shares/GetAllShares`;
     this.http.get<any>(url).subscribe((data) => {
-      if (data.statusCode == 404) 
+      if (data.statusCode == 404)
         alert('Problem connecting to server');
-      else this.shares = data.value;
+      else {
+        this.shares = data.value;
+        localStorage.setItem('stocks', JSON.stringify(data.value));
+      }
     });
   }
 
@@ -59,7 +71,7 @@ export class PersonalPageComponent {
     var url = `https://localhost:7072/api/Traders/GetTraderOpenRequests?traderId=${this.trader?.Id}`;
     this.http.get<any>(url).subscribe((data) => {
       if (data.statusCode == 404)
-        alert('Problem fetching share from server') ;
+        alert('Problem fetching share from server');
       else this.openRequests = data.value;
     });
   }
@@ -69,32 +81,72 @@ export class PersonalPageComponent {
     this.http.post<any>(url, {}).subscribe((data) => {
       if (data.statusCode == 404)
         alert('Error fetching shares from server');
-      else 
+      else
         alert('Successfully deleted request');
     });
     window.location.reload();
   }
 
-  createChart(){
+  createChart() {
+    var sharesStr = localStorage.getItem('shares');
+    var stocksStr = localStorage.getItem('stocks');
+    var data = [];
+    var chartData = [];
+    var sum = 0;
+    if (sharesStr != null && stocksStr != null) {
+      var shares = JSON.parse(sharesStr);
+      var stocks = JSON.parse(stocksStr);
+      for (var i = 0; i < shares.length; i++) {
+        data.push({ shares: shares[i].amount, id: shares[i].stockId });
+        sum += shares[i].amount;
+      }
+      for (var i = 0; i < data.length; i++) {
+        chartData.push(({ y: (100.0 * data[i].shares) / sum, name: stocks[data[i].id - 1].name }));
+      }
+      var chartOptions = {
+        animationEnabled: true,
+        title: {
+          text: "Shares by Stock Name"
+        },
+        data: [{
+          type: "pie",
+          startAngle: -90,
+          indexLabel: "{name}: {y}",
+          yValueFormatString: "#,###.##'%'",
+          dataPoints: chartData
+        }]
+      };
+      this.chart = chartOptions;
+    }
+
+  }
+
+  createChartOnInit() {
+    var data = [];
+    var chartData = [];
+    var sum = 0;
+    for (var i = 0; i < this.trader.Shares.length; i++) {
+      data.push({ shares: this.trader.Shares[i].amount, id: this.trader.Shares[i].stockId });
+      sum += this.trader.Shares[i].amount;
+    }
+    for (var i = 0; i < data.length; i++) {
+      chartData.push(({ y: (100.0 * data[i].shares) / sum, name: this.shares[data[i].id - 1].name }));
+    }
     var chartOptions = {
       animationEnabled: true,
       title: {
-      text: "Shares by Stock Name"
+        text: "Shares by Stock Name"
       },
       data: [{
-      type: "pie",
-      startAngle: -90,
-      indexLabel: "{name}: {y}",
-      yValueFormatString: "#,###.##'%'",
-      dataPoints: [
-        { y: 14.1, name: "Toys" },
-        { y: 28.2, name: "Electronics" },
-        { y: 14.4, name: "Groceries" },
-        { y: 43.3, name: "Furniture" }
-      ]
+        type: "pie",
+        startAngle: -90,
+        indexLabel: "{name}: {y}",
+        yValueFormatString: "#,###.##'%'",
+        dataPoints: chartData
       }]
     };
-
     this.chart = chartOptions;
+    this.chart.update();
   }
+
 }
