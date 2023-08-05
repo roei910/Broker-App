@@ -1,18 +1,16 @@
 ﻿<Properties StartupConfiguration="{E6E053F6-5464-4758-AB42-179DDCCD468A}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="BrokerAppAPI/Controllers/TradersController.cs">
     <Files>
-      <File FileName="BrokerAppAPI/Models/StocksBackgroundTask.cs" Line="1" Column="1" />
-      <File FileName="BrokerAppAPI/Controllers/SharesController.cs" Line="457" Column="48" />
+      <File FileName="BrokerAppAPI/Models/StocksBackgroundTask.cs" />
+      <File FileName="BrokerAppAPI/Controllers/SharesController.cs" />
       <File FileName="BrokerAppAPI/Controllers/TradersController.cs" Line="87" Column="48" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BrokerAppAPI">
-            <Node name="BrokerAppAPI">
-              <Node name="Controllers">
-                <Node name="TradersController.cs" selected="True" />
-              </Node>
+            <Node name="BrokerAppAPI" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
             </Node>
