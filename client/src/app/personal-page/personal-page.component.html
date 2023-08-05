@@ -87,7 +87,8 @@
         </tbody>
       </table>
     </div>
-    <div class="child-container">
+    <!-- only show if user has any shares -->
+    <div *ngIf="this.chart!=null" class="child-container">
       <div class="canvas_container">
         <canvasjs-chart [options]="chart"></canvasjs-chart> 
       </div>

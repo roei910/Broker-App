@@ -13,7 +13,7 @@ export class PersonalPageComponent {
   lastDeals?: any;
   shares?: any;
   openRequests: any;
-  chart?: any;
+  chart?: any = null;
 
 
   constructor(private service: CartService, private http: HttpClient) {
@@ -88,6 +88,8 @@ export class PersonalPageComponent {
   }
 
   createChartOnInit() {
+    if(this.trader.Shares.length == 0)
+      return;
     var data = [];
     var chartData = [];
     var sum = 0;
@@ -112,7 +114,7 @@ export class PersonalPageComponent {
       }]
     };
     this.chart = chartOptions;
-    this.chart.update();
+    // this.chart.update();
   }
 
 }
