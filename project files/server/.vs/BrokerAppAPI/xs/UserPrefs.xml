@@ -1,16 +1,17 @@
 ﻿<Properties StartupConfiguration="{E6E053F6-5464-4758-AB42-179DDCCD468A}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BrokerAppAPI/Controllers/SharesController.cs">
     <Files>
       <File FileName="BrokerAppAPI/Models/StocksBackgroundTask.cs" />
       <File FileName="BrokerAppAPI/Controllers/SharesController.cs" Line="149" Column="70" />
-      <File FileName="BrokerAppAPI/Controllers/TradersController.cs" Line="87" Column="48" />
+      <File FileName="BrokerAppAPI/Controllers/TradersController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="BrokerAppAPI">
-            <Node name="BrokerAppAPI">
-              <Node name="Controllers">
+          <Node name="BrokerAppAPI" expanded="True">
+            <Node name="BrokerAppAPI" expanded="True">
+              <Node name="Controllers" expanded="True">
                 <Node name="SharesController.cs" selected="True" />
               </Node>
               <Node name="Data" expanded="True" />
@@ -21,11 +22,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.BrokerAppAPI PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
