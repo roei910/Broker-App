@@ -1502,11 +1502,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
+      "projectUniqueName": "/Users/roydaniel/Documents/GitHub/Broker-App/project files/server/BrokerAppAPI/BrokerAppAPI.csproj",
       "projectName": "BrokerAppAPI",
-      "projectPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
+      "projectPath": "/Users/roydaniel/Documents/GitHub/Broker-App/project files/server/BrokerAppAPI/BrokerAppAPI.csproj",
       "packagesPath": "/Users/roydaniel/.nuget/packages/",
-      "outputPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/obj/",
+      "outputPath": "/Users/roydaniel/Documents/GitHub/Broker-App/project files/server/BrokerAppAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/roydaniel/.nuget/NuGet/NuGet.Config"
