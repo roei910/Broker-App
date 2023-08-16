@@ -50,10 +50,10 @@ namespace BrokerAppAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetTraderTransactions(int traderId)
+        public async Task<JsonResult> GetTraderTransactions(int traderId)
         {
-            var traderTransactions = _context.TransactionHistory.Where(
-                transaction => transaction.TraderId == traderId).ToList();
+            var traderTransactions = await _context.TransactionHistory.Where(
+                transaction => transaction.TraderId == traderId).ToListAsync();
 
             if (traderTransactions == null)
                 return new JsonResult(NotFound());

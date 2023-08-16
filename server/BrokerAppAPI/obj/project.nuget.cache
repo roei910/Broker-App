@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wB9+AID2Ly+U1AkojFR2nkjQD5ifvrjvKYXUJoW7Rfwu9oTkUyw23yAHznZumMTowFn3LEuZh7cRYh5upx4Zfg==",
+  "dgSpecHash": "+1zSMmMi7VY9oxZ6WlAiQeksKTLh/LoTdjtutmhjzFeQ0KA1f+zw3QqlA7/DZYO8JQ+JGhMDL2ALWc0DakIy6Q==",
   "success": true,
-  "projectFilePath": "/Users/roydaniel/Documents/GitHub/Broker-App/project files - for deployment/server/BrokerAppAPI/BrokerAppAPI.csproj",
+  "projectFilePath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
   "expectedPackageFiles": [
     "/Users/roydaniel/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/roydaniel/.nuget/packages/microsoft.entityframeworkcore/7.0.9/microsoft.entityframeworkcore.7.0.9.nupkg.sha512",

@@ -114,7 +114,6 @@ export class PersonalPageComponent {
       }]
     };
     this.chart = chartOptions;
-    // this.chart.update();
   }
 
 }
