@@ -344,6 +344,23 @@
           }
         }
       },
+      "MongoDB.Bson/2.21.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.5",
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Mono.TextTemplating/2.2.1": {
         "type": "package",
         "dependencies": {
@@ -441,6 +458,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {}
+        }
+      },
+      "System.Memory/4.5.5": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
@@ -1206,6 +1232,25 @@
         "microsoft.openapi.nuspec"
       ]
     },
+    "MongoDB.Bson/2.21.0": {
+      "sha512": "QT+D1I3Jz6r6S6kCgJD1L9dRCLVJCKlkGRkA+tJ7uLpHRmjDNcNKy4D1T+L9gQrjl95lDN9PHdwEytdvCW/jzA==",
+      "type": "package",
+      "path": "mongodb.bson/2.21.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net472/MongoDB.Bson.dll",
+        "lib/net472/MongoDB.Bson.xml",
+        "lib/netstandard2.0/MongoDB.Bson.dll",
+        "lib/netstandard2.0/MongoDB.Bson.xml",
+        "lib/netstandard2.1/MongoDB.Bson.dll",
+        "lib/netstandard2.1/MongoDB.Bson.xml",
+        "mongodb.bson.2.21.0.nupkg.sha512",
+        "mongodb.bson.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Mono.TextTemplating/2.2.1": {
       "sha512": "KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "type": "package",
@@ -1360,6 +1405,29 @@
         "version.txt"
       ]
     },
+    "System.Memory/4.5.5": {
+      "sha512": "XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+      "type": "package",
+      "path": "system.memory/4.5.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.5.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "type": "package",
@@ -1492,30 +1560,38 @@
     "net6.0": [
       "Microsoft.EntityFrameworkCore.InMemory >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
+      "MongoDB.Bson >= 2.21.0",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "/Users/roydaniel/.nuget/packages/": {}
+    "C:\\Users\\roei9\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
+      "projectUniqueName": "C:\\Users\\roei9\\OneDrive\\Documents\\GitHub\\Broker-App\\server\\BrokerAppAPI\\BrokerAppAPI.csproj",
       "projectName": "BrokerAppAPI",
-      "projectPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/BrokerAppAPI.csproj",
-      "packagesPath": "/Users/roydaniel/.nuget/packages/",
-      "outputPath": "/Users/roydaniel/Documents/GitHub/Broker-App/server/BrokerAppAPI/obj/",
+      "projectPath": "C:\\Users\\roei9\\OneDrive\\Documents\\GitHub\\Broker-App\\server\\BrokerAppAPI\\BrokerAppAPI.csproj",
+      "packagesPath": "C:\\Users\\roei9\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\roei9\\OneDrive\\Documents\\GitHub\\Broker-App\\server\\BrokerAppAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/roydaniel/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\roei9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/sdk/7.0.307/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1543,6 +1619,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.9, )"
+          },
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "[2.21.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -1572,7 +1652,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
