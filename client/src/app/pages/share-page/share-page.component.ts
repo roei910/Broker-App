@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { CartService } from '../cart.service';
+import { CartService } from '../../cart.service';
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
-import { Trader } from '../trader';
+import { Trader } from '../../models/trader';
 
 @Component({
   selector: 'app-share-page',

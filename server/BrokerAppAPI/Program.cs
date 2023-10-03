@@ -2,6 +2,8 @@
 using BrokerAppAPI.Models;
 using BrokerAppAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApiContext>
+/* builder.Services.AddDbContext<ApiContext>
     (opt => {
         opt.UseInMemoryDatabase("BrokerAppDb");
-        });
+        }); */
+
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<MongoDBService>();
 
 //add background service
 builder.Services.AddHostedService<StocksBackgroundTask>();

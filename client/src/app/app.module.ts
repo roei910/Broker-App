@@ -4,11 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { PersonalPageComponent } from './personal-page/personal-page.component';
-import { SharePageComponent } from './share-page/share-page.component';
-import { TradersInformationPageComponent } from './traders-information-page/traders-information-page.component';
-import { TradingPageComponent } from './trading-page/trading-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { PersonalPageComponent } from './pages/personal-page/personal-page.component';
+import { SharePageComponent } from './pages/share-page/share-page.component';
+import { TradersInformationPageComponent } from './pages/traders-information-page/traders-information-page.component';
+import { TradingPageComponent } from './pages/trading-page/trading-page.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { PersonalPageComponent } from './pages/personal-page/personal-page.component';
 import { SharePageComponent } from './share-page/share-page.component';
 import { TradingPageComponent } from './trading-page/trading-page.component';
 import { TradersInformationPageComponent } from './traders-information-page/traders-information-page.component';
