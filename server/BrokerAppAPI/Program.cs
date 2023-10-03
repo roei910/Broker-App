@@ -12,11 +12,13 @@ var mongo = false;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-if (mongo) {
+if (mongo) 
+{
     builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
     builder.Services.AddSingleton<MongoDBService>();
 } 
-else {
+else 
+{
     builder.Services.AddDbContext<ApiContext>
     (opt => {
         opt.UseInMemoryDatabase("BrokerAppDb");
