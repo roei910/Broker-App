@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PersonalPageComponent } from './pages/personal-page/personal-page.component';
-import { SharePageComponent } from './share-page/share-page.component';
-import { TradingPageComponent } from './trading-page/trading-page.component';
-import { TradersInformationPageComponent } from './traders-information-page/traders-information-page.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { SharePageComponent } from './pages/share-page/share-page.component';
+import { TradingPageComponent } from './pages/trading-page/trading-page.component';
+import { TradersInformationPageComponent } from './pages/traders-information-page/traders-information-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 const routes: Routes = [
   {path:'personal-page', component: PersonalPageComponent},

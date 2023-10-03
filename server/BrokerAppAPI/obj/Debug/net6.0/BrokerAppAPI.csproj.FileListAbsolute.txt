@@ -498,3 +498,16 @@ C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\obj\Debu
 C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\obj\Debug\net6.0\BrokerAppAPI.pdb
 C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\obj\Debug\net6.0\BrokerAppAPI.genruntimeconfig.cache
 C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\obj\Debug\net6.0\ref\BrokerAppAPI.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\DnsClient.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\SharpCompress.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\Snappier.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\ZstdSharp.dll
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\roei9\OneDrive\Documents\GitHub\Broker-App\server\BrokerAppAPI\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
