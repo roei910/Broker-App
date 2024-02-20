@@ -1,6 +1,4 @@
 # BrokerApp
-fullstack application for running a broker demo application using angular and c# .net
-
 
 ## Back-end: .net core
 run server: open .sln file using visual studio, press play.
